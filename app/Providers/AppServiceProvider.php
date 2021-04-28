@@ -30,8 +30,10 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
 
-        if (Schema::hasTable('users') && !app()->runningInConsole()) {
-            view()->share('badge', User::where('type', null)->count());
+        if (!app()->runningInConsole()) {
+            if (Schema::hasTable('users')) {
+                view()->share('badge', User::where('type', null)->count());
+            }
         }
     }
 }
