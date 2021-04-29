@@ -98,7 +98,7 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')->with(['success' => 'L\'utilisateur a bien été ajouté !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function show(User $user)
@@ -145,10 +145,10 @@ class UserController extends Controller
                 }
             }
 
-            return redirect()->route('admin.users.index')->with(['success' => 'Lutilisateur a bien été modifié !']);
+            return redirect()->route('admin.users.index')->with(['success' => 'L\'utilisateur a bien été modifié !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function forceDelete(User $user)
@@ -157,7 +157,7 @@ class UserController extends Controller
             return redirect()->route('admin.users.index');
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function destroy(User $user)
@@ -166,7 +166,7 @@ class UserController extends Controller
             return redirect()->route('admin.users.index');
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function getAvailableCourses($user_id = null)

@@ -11,14 +11,14 @@ class PlanningRequest extends BaseRequest
 {
     public function rules()
     {
-        // si le temps est deja passe, le premier va se charger d'afficher l'erreur, et plus besoin de le faire pour les heure
+        
         return [
-            'cour_id' => 'nullable|exists:cours,id',
-            'debut_date' => array('required', 'date', 'after:yesterday'),
-            'debut_heure' => array('required', 'date_format:H:i', function ($attribute, $value, $fail) {
-                $formDate = Carbon::createFromFormat('Y-m-d H:i', $this->debut_date . ' 23:59');
+            'cours_id' => 'nullable|exists:cours,id',
+            'debut_date' => array('required', 'bail', 'date_format:d/m/Y', 'after:yesterday'),
+            'debut_heure' => array('required', 'bail', 'date_format:"H:i"', function ($attribute, $value, $fail) {
+                $formDate = Carbon::createFromFormat('d/m/Y H:i', $this->debut_date . ' 23:59');
                 if (!$formDate->isPast()) {
-                    $formDate = Carbon::createFromFormat('Y-m-d H:i', $this->debut_date . ' ' . $value);
+                    $formDate = Carbon::createFromFormat('d/m/Y H:i', $this->debut_date . ' ' . $value);
                     $verifDate = clone $formDate;
                     if ($verifDate->addMinutes(-30)->isPast()) {
                         $fail('Le temps est invalide et doit etre en avance d\'au moins 30 minutes');
@@ -33,13 +33,13 @@ class PlanningRequest extends BaseRequest
                     }
                 }
             }),
-            'fin_date' => array('nullable', 'date', 'after_or_equal:' . $this->debut_date),
-            'fin_heure' => array('required', 'date_format:H:i', function ($attribute, $value, $fail) {
+            'fin_date' => array('nullable', 'bail', 'date', 'after_or_equal:' . $this->debut_date), 
+            'fin_heure' => array('required', 'bail', 'date_format:"H:i"', function ($attribute, $value, $fail) {
                 $date = $this->fin_date ?? $this->debut_date;
-                $debutDate = Carbon::createFromFormat('Y-m-d H:i', $this->debut_date . ' ' . $this->debut_heure);
-                $formDate = Carbon::createFromFormat('Y-m-d H:i', $date . ' 23:59');
+                $debutDate = Carbon::createFromFormat('d/m/Y H:i', $this->debut_date . ' ' . $this->debut_heure);
+                $formDate = Carbon::createFromFormat('d/m/Y H:i', $date . ' 23:59');
                 if (!$formDate->isPast()) {
-                    $formDate = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $value);
+                    $formDate = Carbon::createFromFormat('d/m/Y H:i', $date . ' ' . $value);
                     if ($formDate->getTimestamp() < $debutDate->getTimestamp()) {
                         $fail('La date et l\'heure de fin doivent etre superieur a la date de debut');
                     }

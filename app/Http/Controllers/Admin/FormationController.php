@@ -35,10 +35,10 @@ class FormationController extends Controller
                 $course->save();
             }
 
-            return redirect()->route('admin.formations.index')->with(['success' => 'La formation a bien ete ajoutee !']);
+            return redirect()->route('admin.formations.index')->with(['success' => 'La formation a bien été ajoutée !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function show(Formation $formation)
@@ -59,7 +59,6 @@ class FormationController extends Controller
     {
         $data = $request->all();
         if ($formation->update($data)) {
-            // on va faire une repetition que je naime pas du tout
             $courses = $request->get('courses') ?? [];
             foreach ($formation->courses as $course) {
                 if (!in_array($course->id, $courses)) {
@@ -75,20 +74,20 @@ class FormationController extends Controller
             }
 
             return redirect()->route('admin.formations.index')
-                ->with(['success' => 'La formation a bien ete modifiee !']);
+                ->with(['success' => 'La formation a bien été modifiée !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function destroy(Formation $formation)
     {
         if ($formation->delete()) {
             return redirect()->route('admin.formations.index')
-                ->with(['success' => 'La formation a bien ete supprimee !']);
+                ->with(['success' => 'La formation a bien été supprimée !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function getAvailableCourses($formation_id = null)

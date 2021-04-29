@@ -71,11 +71,13 @@ class PlanningController extends Controller
     public function store(PlanningRequest $request)
     {
         $data = $request->all();
+        $this->setGoodDate($data);
+
         if (Planning::create($data)) {
             return redirect()->route('admin.plannings.index')->with(['success' => 'Le planning a bien été ajouté !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function show(Planning $planning)
@@ -99,20 +101,20 @@ class PlanningController extends Controller
 
         if ($planning->update($data)) {
             return redirect()->route('admin.plannings.index')
-                ->with(['success' => 'Planning modifie avec succes']);
+                ->with(['success' => 'Planning modifié avec succès']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function destroy(Planning $planning)
     {
         if ($planning->delete()) {
             return redirect()->route('admin.plannings.index')
-                ->with(['success' => 'Planning supprime avec succes']);
+                ->with(['success' => 'Planning supprimé avec succès']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     /**

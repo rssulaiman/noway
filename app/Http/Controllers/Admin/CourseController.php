@@ -76,7 +76,7 @@ class CourseController extends Controller
             return redirect()->route('admin.courses.index')->with(['success' => 'Le cours a bien été ajouté !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function show(Course $course)
@@ -102,15 +102,15 @@ class CourseController extends Controller
             return redirect()->route('admin.courses.index')->with(['success' => 'Le cours a bien été modifié !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 
     public function destroy(Course $course)
     {
         if ($course->delete()) {
-            return redirect()->route('admin.courses.index')->with(['success' => 'Le cours a bien ete supprime']);
+            return redirect()->route('admin.courses.index')->with(['success' => 'Le cours a bien été supprimé !']);
         }
 
-        return redirect('/', 500)->with(['error' => 'Une erreur innatendue s\'est produite']);
+        return redirect('/', 500)->with(['error' => 'Une erreur inattendue s\'est produite']);
     }
 }

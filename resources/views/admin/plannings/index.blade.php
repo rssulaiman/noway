@@ -20,7 +20,7 @@
                             <form action="" method="get" class="form-inline">
                                 <div class="form-group">
                                     <label for="date_debut">Date debut</label>
-                                    <input type="date" id="date_debut" name="date_debut"
+                                    <input type="date" placeholder="dd/mm/yyyy" id="date_debut" name="date_debut"
                                         class="form-control mx-2 mb-2 @error('date_debut') is-invalid @endif"
                                         value="{{ old('date_debut', $date_debut ?? '') }}"/>
                                     @error('date_fin')
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="date_fin">Date Fin</label>
-                                    <input type="date" id="date_fin" name="date_fin"
+                                    <input type="date" placeholder="dd/mm/yyyy" id="date_fin" name="date_fin"
                                         class="form-control mx-2 mb-2  @error('date_fin') is-invalid @endif"
                                         value="{{ old('date_fin', $date_fin ?? '') }}"/>
                                     @error('date_fin')

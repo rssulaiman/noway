@@ -28,7 +28,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="debut_date">Date de debut</label>
-                                        <input type="date" name="debut_date" id="debut_date" value="{{ old('debut_date', $planning->debut_date) }}" class="form-control @error('debut_date') is-invalid @enderror" required>
+                                        <input type="date" placeholder="dd/mm/yyyy" name="debut_date" id="debut_date" value="{{ old('debut_date', $planning->debut_date) }}" class="form-control @error('debut_date') is-invalid @enderror" required>
 
                                         @error('debut_date')
                                         <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                                             Date de fin
                                             <small>Laisser vide si la date est equivalente a la date de debut</small>
                                         </label>
-                                        <input type="date" name="fin_date" id="fin_date" value="{{ old('fin_date', $planning->fin_date) }}" class="form-control @error('fin_date') is-invalid @enderror">
+                                        <input type="date" placeholder="dd/mm/yyyy" name="fin_date" id="fin_date" value="{{ old('fin_date', $planning->fin_date) }}" class="form-control @error('fin_date') is-invalid @enderror">
 
                                         @error('fin_date')
                                         <span class="invalid-feedback" role="alert">
